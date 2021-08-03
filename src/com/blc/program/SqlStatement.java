@@ -323,15 +323,4 @@ public class SqlStatement {
 			e.printStackTrace();
 		}
 	}
-
-
-	
-
-
-
-
-
-	
-	
-
 }
