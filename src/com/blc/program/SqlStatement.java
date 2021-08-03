@@ -15,19 +15,19 @@ public class SqlStatement {
 		SqlStatement sqlStatement = new SqlStatement();
 		SqlConnection sqlConnection  = new SqlConnection();
 		Connection connection = sqlConnection.connection();
-//		sqlStatement.createDatabase(connection);
-	//	sqlStatement.createTable(connection);
-//		sqlStatement.insertIntoEmployee(connection);
-//		sqlStatement.selectAll(connection); 
-	//	sqlStatement.selectedData(connection);
-	//	sqlStatement.addColumn(connection);
-	//	sqlStatement.updateGender(connection);
-	//	sqlStatement.updateSalary(connection);
-	//	sqlStatement.showTableByDate(connection);
-	//	sqlStatement.findMax(connection);
-	//	sqlStatement.findMin(connection);
-	//	sqlStatement.findSum(connection);
-	//	sqlStatement.findAvg(connection);
+		sqlStatement.createDatabase(connection);
+		sqlStatement.createTable(connection);
+		sqlStatement.insertIntoEmployee(connection);
+		sqlStatement.selectAll(connection); 
+		sqlStatement.selectedData(connection);
+		sqlStatement.addColumn(connection);
+		sqlStatement.updateGender(connection);
+		sqlStatement.updateSalary(connection);
+		sqlStatement.showTableByDate(connection);
+		sqlStatement.findMax(connection);
+		sqlStatement.findMin(connection);
+		sqlStatement.findSum(connection);
+		sqlStatement.findAvg(connection);
 		sqlStatement.count(connection);
 	}
 
@@ -144,10 +144,8 @@ public class SqlStatement {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}	
 	}
-	
-
 
 	private void updateGender(Connection connection) {
 		
@@ -170,7 +168,6 @@ public class SqlStatement {
 		}
 		
 	}
-
 	
 	private void updateSalary(Connection connection) {
 			System.out.println("Enter the name ");
@@ -192,10 +189,9 @@ public class SqlStatement {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+		}
 	}
 	
-
 	private void showTableByDate(Connection connection) {
 		System.out.println("Enter the start date ");
 		String date = sc.next();
