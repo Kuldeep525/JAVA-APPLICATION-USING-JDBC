@@ -29,6 +29,9 @@ public class SqlStatement {
 		sqlStatement.findSum(connection);
 		sqlStatement.findAvg(connection);
 		sqlStatement.count(connection);
+		sqlStatement.insertMultiQuery(connection);
+		sqlStatement.insertInERTables(connection);
+		sqlStatement.removeRow(connection);
 	}
 
 
@@ -323,4 +326,79 @@ public class SqlStatement {
 			e.printStackTrace();
 		}
 	}
+	/* -------------------------------- SINGLE TRANSCATION Using Autocommit and rollback method-------------*/
+	
+	private void insertMultiQuery(Connection connection) {
+		
+		try {
+			connection.setAutoCommit(false);
+			Statement statement = connection.createStatement();
+			statement.executeUpdate("Insert into employee2 values(5 , 'Rajesh' , 'Valsad' , 22770.00);");
+			statement.executeUpdate("Insert into employee2 values(6 , 'raj' , 'pardi' , 19670.00);");
+			connection.commit();
+			statement.close();
+			connection.close();
+			
+			System.out.println("Data inserted");
+					
+		} catch (SQLException e) {	
+			e.printStackTrace();
+			try {
+				connection.rollback();
+				System.out.println("data rollback");
+			} catch (SQLException e1) {	
+				e1.printStackTrace();
+			}
+		}	
+	}
+	private void insertInERTables(Connection connection) {
+		
+		try {
+			connection.setAutoCommit(false);
+			Statement statement = connection.createStatement();
+			statement.executeUpdate("insert into payRoll values (1005 , 10000.00 , 9900.00 , 100.00);");
+			statement.executeUpdate("Insert into department values(2005 , 'Web-Developer' , 104 , 1001);");
+			statement.execute("Select * from Company Left Join Employee On Company.companyId = Employee.companyid;");
+			connection.commit();
+			statement.close();
+			connection.close();
+			System.out.println("All done");
+			
+			System.out.println("Data inserted");
+					
+		} catch (SQLException e) {	
+			e.printStackTrace();
+			try {
+				connection.rollback();
+				System.out.println("data rollback");
+			} catch (SQLException e1) {	
+				e1.printStackTrace();
+			}
+		}	
+	}
+	
+	private void removeRow(Connection connection) {
+		
+		try {
+			connection.setAutoCommit(false);
+			Statement statement = connection.createStatement();
+			statement.executeUpdate("Delete from employee2 where name = 'raj'");
+			
+			connection.commit();
+			statement.close();
+			connection.close();
+			
+			System.out.println("Data deleted");
+					
+		} catch (SQLException e) {	
+			e.printStackTrace();
+			try {
+				connection.rollback();
+				System.out.println("data rollback");
+			} catch (SQLException e1) {	
+				e1.printStackTrace();
+			}
+		}	
+	}
+		
 }
